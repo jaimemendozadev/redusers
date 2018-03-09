@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import SearchUsers from './components/SearchUsers.jsx';
+
 const SERVER = 'http://localhost:3000/api';
+
+
 
 class App extends Component {
   constructor(props){
@@ -30,7 +34,7 @@ class App extends Component {
     return(
       <div>
         <h1>Redis App</h1>
-        {console.log("this.state.result ", this.state.result)}
+        <SearchUsers />
       </div>
     )
   }
