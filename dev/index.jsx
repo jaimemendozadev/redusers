@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SearchUsers from './components/SearchUsers.jsx';
 
-const SERVER = 'http://localhost:3000/api';
-
+const API = 'http://localhost:3000/api';
 
 
 class App extends Component {
@@ -18,7 +17,7 @@ class App extends Component {
   
 
   async fetchRedisUsers() {
-    let results = await fetch(SERVER);
+    let results = await fetch(API);
     
     results = await results.json();
 

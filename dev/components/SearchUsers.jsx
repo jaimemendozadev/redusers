@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+const API = `http://localhost:3000/api/user/search`;
 
 class SearchUsers extends Component {
   constructor(props){
     super(props);
     this.state = {
-      formInput: 'Enter a Name'
+      formInput: 'Enter an ID'
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,6 +14,9 @@ class SearchUsers extends Component {
 
   handleSubmit(event){
     event.preventDefault();
+
+    let id = this.state.formInput;
+    
   }
 
   handleChange(event){
