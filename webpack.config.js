@@ -3,7 +3,7 @@ const public = path.resolve(__dirname, 'public');
 const dev = path.join(__dirname, '/dev/index.jsx');
 
 module.exports = {
-  entry: dev,
+  entry: ["babel-polyfill", dev],
   output: {
     path: public,
     filename: 'bundle.js'    
