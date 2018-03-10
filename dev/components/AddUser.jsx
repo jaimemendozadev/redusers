@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
-const API = `http://localhost:3000/api/user/search`;
+const API = `http://localhost:3000/api/user/add`;
+const API_OPTIONS = {
+  method: 'POST',
+  headers : new Headers(),
+  body: null
+};
 
-
-class SearchUsers extends Component {
+class AddUser extends Component {
   constructor(props){
     super(props);
     this.state = {
       formInput: 'Enter an ID'
     }
-    this.sendSearchToAPI = this.sendSearchToAPI.bind(this);
+    this.sendNewUserToAPI = this.sendNewUserToAPI.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     
   }
 
   async sendSearchToAPI(id){
-    //must specify headers and stingify body
-    let API_OPTIONS = {
-      method: 'POST',
-      headers : new Headers({'Content-Type': 'application/json'}),
-      body: JSON.stringify({id})
-    };
+    console.log("inside sendSearchToAPI")
+    API_OPTIONS.body = JSON.stringify({id});
 
     let API_RESULT = await fetch(API, API_OPTIONS);
     API_RESULT = API_RESULT.json();

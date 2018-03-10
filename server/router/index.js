@@ -17,8 +17,11 @@ Router.get('/', (req, res) => {
 });
 
 Router.post('/user/search', (req, res) => {
-  console.log("hit the post route")
+  console.log("hit the post route", req.body);
+
   let id = req.body.id
+
+  console.log("the id from React is ", req.body.id)
   
   client.hgetall(id, (err, obj) => {
     if(!obj) {
@@ -26,9 +29,13 @@ Router.post('/user/search', (req, res) => {
       res.send({error: "User does not exist."});
     } else {
       obj.id = id;
-      res.send(obj);
+      res.send({user: obj});
     }
   });
+});
+
+Router.post('/user/add', (req, res) => {
+
 });
 
 
