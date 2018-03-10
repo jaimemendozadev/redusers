@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SearchUsers from './components/SearchUsers.jsx';
-
+import AddUser from './components/AddUser.jsx';
 const API = 'http://localhost:3000/api';
 
 
@@ -34,6 +34,7 @@ class App extends Component {
       <div>
         <h1>Redis App</h1>
         <SearchUsers />
+        <AddUser />
       </div>
     )
   }

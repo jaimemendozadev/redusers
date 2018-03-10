@@ -35,7 +35,7 @@ Router.post('/user/search', (req, res) => {
 });
 
 Router.post('/user/add', (req, res) => {
-
+  console.log("req.body in add user ", req.body)
 });
 
 
