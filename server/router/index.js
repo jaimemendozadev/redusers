@@ -8,6 +8,7 @@ client.on('connect', () => {
   console.log('Connected to Redis!');
 });
 
+console.log("client is ", client)
 
 
 Router.get('/', (req, res) => {
@@ -28,7 +29,6 @@ Router.post('/user/search', (req, res) => {
       console.log("Redis found an error ", err);
       res.send({error: "User does not exist."});
     } else {
-      obj.id = id;
       res.send({user: obj});
     }
   });
@@ -36,8 +36,23 @@ Router.post('/user/search', (req, res) => {
 
 Router.post('/user/add', (req, res) => {
   const {id, name, email, phone} = req.body;
-  console.log("req.body ", req.body)
-//   client.hmset()
+  
+  client.hmset(id, [
+    'name', name,
+    'email', email,
+    'phone', phone
+  ], (err, reply)=>{
+    if(err){
+      console.log('There was an error saving the payload in Redis ', err);
+      res.send({error: err});
+    }
+
+    console.log('User successfully saved in Redis ', reply);
+
+    res.send(reply);
+  });
+
+
 });
 
 
