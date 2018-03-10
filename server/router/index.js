@@ -19,7 +19,7 @@ Router.get('/', (req, res) => {
 Router.post('/user/search', (req, res) => {
   console.log("hit the post route", req.body);
 
-  let id = req.body.id
+  const {id} = req.body;
 
   console.log("the id from React is ", req.body.id)
   
@@ -35,7 +35,9 @@ Router.post('/user/search', (req, res) => {
 });
 
 Router.post('/user/add', (req, res) => {
-  console.log("req.body in add user ", req.body)
+  const {id, name, email, phone} = req.body;
+  console.log("req.body ", req.body)
+//   client.hmset()
 });
 
 

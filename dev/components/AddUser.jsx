@@ -10,6 +10,7 @@ class AddUser extends Component {
   constructor(props){
     super(props);
     this.state = {
+      formID: 'Enter an ID Number',
       formName: 'Enter a Name',
       formEmail: 'Enter an Email',
       formPhone: 'Enter an Phone Number'
@@ -17,14 +18,15 @@ class AddUser extends Component {
     this.sendNewUserToAPI = this.sendNewUserToAPI.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
+    this.handleID = this.handleID.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePhone = this.handlePhone.bind(this);
     
   }
 
-  async sendNewUserToAPI(formName, formEmail, formPhone){
-    let payload = {name: formName, email: formEmail, phone: formPhone};
+  async sendNewUserToAPI(formID, formName, formEmail, formPhone){
+    let payload = {id: formID, name: formName, email: formEmail, phone: formPhone};
 
     //must specify headers and stingify body
     let API_OPTIONS = {
@@ -43,12 +45,19 @@ class AddUser extends Component {
   handleSubmit(event){
     event.preventDefault();
 
-    const {formName, formEmail, formPhone} = this.state;
+    const {formID, formName, formEmail, formPhone} = this.state;
 
-    this.sendNewUserToAPI(formName, formEmail, formPhone)
+    this.sendNewUserToAPI(formID, formName, formEmail, formPhone)
       .then(result => {
         console.log("the result from API ", result);
       });
+  }
+  
+  handleID(event) {
+    let formID = event.target.value;
+    this.setState({
+      formID
+    });
   }
 
   handleName(event){
@@ -75,13 +84,16 @@ class AddUser extends Component {
   render(){
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>New User Name:</label>
+        <label>Enter New User ID:</label>
+        <input type="text" value={this.state.formID} onChange={this.handleID} />
+
+        <label>Enter New User Name:</label>
         <input type="text" value={this.state.formName} onChange={this.handleName} />
 
-        <label>Enter User Email:</label>
+        <label>Enter New User Email:</label>
         <input type="text" value={this.state.formEmail} onChange={this.handleEmail} />
 
-        <label>Enter User Phone Number:</label>
+        <label>Enter New User Phone Number:</label>
         <input type="text" value={this.state.formPhone} onChange={this.handlePhone} />
 
         <button>Submit</button>
